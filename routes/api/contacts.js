@@ -10,14 +10,14 @@ const {
 const { contactsSchema } = require("../../schemas");
 const { cntrlWrapper, validation } = require("../../middlewares");
 
-router.get("/", getContacts);
+router.get("/", cntrlWrapper(getContacts));
 
-router.get("/:contactId", getContactByID);
+router.get("/:contactId", cntrlWrapper(getContactByID));
 
 router.post("/", validation(contactsSchema), cntrlWrapper(addContact));
 
-router.delete("/:contactId", deleteContact);
+router.delete("/:contactId", cntrlWrapper(deleteContact));
 
-router.put("/:id", validation(contactsSchema), updateContact);
+router.put("/:id", validation(contactsSchema), cntrlWrapper(updateContact));
 
 module.exports = router;
