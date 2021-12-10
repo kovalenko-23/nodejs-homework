@@ -1,6 +1,6 @@
 const fs = require("fs/promises");
 const listContacts = require("./listContacts");
-const filePath = require("./getPath")(__dirname);
+const filePath = process.env.CONTACTS_PATH;
 
 async function updateContact(id, data) {
   const contacts = await listContacts();

@@ -1,7 +1,7 @@
 const fs = require("fs/promises");
 const { v4 } = require("uuid");
 const listContacts = require("./listContacts");
-const filePath = require("./getPath")(__dirname);
+const filePath = process.env.CONTACTS_PATH;
 
 async function addContact(name, email, phone) {
   const newContact = { id: v4(), name, email, phone };
