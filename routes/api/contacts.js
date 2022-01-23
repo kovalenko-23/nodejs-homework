@@ -9,13 +9,13 @@ const {
   updateFavorite,
 } = require("../../controllers/contacts");
 const { joiSchema, favoriteJoiSchema } = require("../../models");
-const { cntrlWrapper, validation } = require("../../middlewares");
+const { cntrlWrapper, validation, auth } = require("../../middlewares");
 
-router.get("/", cntrlWrapper(getContacts));
+router.get("/", auth, cntrlWrapper(getContacts));
 
 router.get("/:contactId", cntrlWrapper(getContactByID));
 
-router.post("/", validation(joiSchema), cntrlWrapper(addContact));
+router.post("/", auth, validation(joiSchema), cntrlWrapper(addContact));
 
 router.delete("/:contactId", cntrlWrapper(deleteContact));
 
