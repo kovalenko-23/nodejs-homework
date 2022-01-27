@@ -6,7 +6,7 @@ require("dotenv").config();
 const contactsRouter = require("./routes/api/contacts");
 const authRouter = require("./routes/api/auth");
 const usersRouter = require("./routes/api/users");
-const { number } = require("joi");
+const { number, x } = require("joi");
 
 const app = express();
 
@@ -28,4 +28,5 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
+console.log(romanNumerals(1666));
 module.exports = app;
