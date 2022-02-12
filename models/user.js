@@ -1,6 +1,5 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
-const { string } = require("joi");
 const bcrypt = require("bcryptjs/dist/bcrypt");
 
 const userSchema = Schema({
@@ -15,12 +14,15 @@ const userSchema = Schema({
   },
   subscription: {
     type: String,
-    enum: ["starter", "pro", "business"],
     default: "starter",
+    enum: ["starter", "pro", "business"],
   },
   token: {
     type: String,
     default: null,
+  },
+  avatarURL: {
+    type: String,
   },
 });
 
@@ -33,6 +35,7 @@ const userRegistrationSchema = Joi.object({
   email: Joi.string().required(),
   subscription: Joi.string(),
   token: Joi.string(),
+  avatarURL: Joi.string(),
 });
 
 const updateUserSubsription = Joi.object({

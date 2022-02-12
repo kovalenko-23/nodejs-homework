@@ -19,6 +19,7 @@ app.use(express.json());
 app.use("/api/contacts", contactsRouter);
 app.use("/users", authRouter);
 app.use("/users", usersRouter);
+app.use(express.static("public"));
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });
@@ -28,5 +29,4 @@ app.use((err, req, res, next) => {
   res.status(500).json({ message: err.message });
 });
 
-console.log(romanNumerals(1666));
 module.exports = app;
