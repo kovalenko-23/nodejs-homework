@@ -1,13 +1,20 @@
-const express = require("express");
-const app = express();
-const { login } = require("../controllers/auth");
-const { User } = require("../models");
-const jwt = require("jsonwebtoken");
-const { mockRequest, mockResponse } = require("./util/interceptors");
-jest.mock("../controllers/auth/login.js");
+const mongoose = require("mongoose");
+const supertest = require("supertest");
+require("dotenv").config();
+const app = require("../../app");
+const { User } = require("../../models");
 
-app.get("/users", login);
-jest.setTimeout(50000);
+// const express = require("express");
+// const { login } = require(".");
+// const jwt = require("jsonwebtoken");
+// const {
+//   mockRequest,
+//   mockResponse,
+// } = require("../../__test__/util/interceptors");
+// jest.mock("../controllers/auth/login.js");
+
+// app.get("/users", login);
+// jest.setTimeout(50000);
 
 describe("Auth service Login test", () => {
   test("should create token and add token to res object", async () => {

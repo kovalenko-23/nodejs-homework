@@ -12,6 +12,10 @@ const login = async (req, res) => {
     });
   }
 
+  if (!user.verify) {
+    throw new createError(404, "User is not verified");
+  }
+
   const payload = {
     id: user._id,
   };

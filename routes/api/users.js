@@ -9,12 +9,24 @@ const {
   uploadMiddleware,
 } = require("../../middlewares");
 const {
+  resendVerificationEmail,
+  verifyUser,
   getCurrent,
   updateSuscrpition,
   updateAvatar,
 } = require("../../controllers/users");
-const { updateUserSubsription } = require("../../models/user");
+const {
+  updateUserSubsription,
+  verifyEmailSchema,
+} = require("../../models/user");
 
+router.post(
+  "/verify",
+  validation(verifyEmailSchema),
+  cntrlWrapper(resendVerificationEmail)
+);
+
+router.get("/verify/:verificationToken", cntrlWrapper(verifyUser));
 router.get("/current", auth, cntrlWrapper(getCurrent));
 router.patch(
   "/",
